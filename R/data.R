@@ -2,23 +2,53 @@
 #' @description  A data set containing the Australian Customs Tariff Classification (ACTC).
 #' @format Data set \code{actc_2017} contains the following variables:
 #' \describe{
-#'   \item{}
-#'   \item{.}
+#'   \item{section_number}{ACTC Schedule 3 section number}
+#'   \item{section_name}{ACTC Schedule 3 section name}
+#'   \item{chapter_number}{ACTC Schedule 3 chapter number}
+#'   \item{chapter_name}{ACTC Schedule 3 chapter name}
+#'   \item{heading_number_4digit}{ACTC Schedule 3 heading number}
+#'   \item{heading_name_4digit}{ACTC Schedule 3 heading name}
+#'   \item{subheading_number_5digit}{ACTC Schedule 3 subheading number (five-digit)}
+#'   \item{subheading_name_5digit}{ACTC Schedule 3 subheading name (five-digit)}
+#'   \item{subheading_number_6digit}{ACTC Schedule 3 subheading number (six-digit)}
+#'   \item{subheading_name_6digit}{ACTC Schedule 3 subheading name (six-digit)}
+#'   \item{reference_number}{ACTC eight-digit commodity reference number}
+#'   \item{statistical_code}{ACTC Schedule 3 statistical code}
+#'   \item{unit}{unit of measure}
+#'   \item{commodity_name}{ACTC eight-digit commodity reference number}
+#'   \item{rate}{current customs tariff rate}
+#'   \item{notes}{notes to customs tariff}
 #' }
-#' @details The Australian Customs Tariff Classification (ACTC) is
-#'   designed for use by exporters, customs brokers and freight forwarders in the
-#'   classification of goods when providing export declarations to the Department
-#'   of Immigration and Border Protection, and to assist users interpret export
-#'   statistics published by the Australian Bureau of Statistics (ABS).
-#'
-#'   The classification is based on the six digit international Harmonized Commodity
-#'   Description and Coding System (HS) developed by the World Customs Organization
-#'   (WCO) for describing internationally traded goods. The ABS extends the six digit
-#'   international HS by two digits to provide a finer level of detail to meet
-#'   Australian statistical requirements (Statistical codes).
+#' @details The Combined Australian Customs Tariff Nomenclature and Statistical
+#'   Classification (commonly known as the Working Tariff) incorporates the
+#'   \emph{Customs Tariff Act 1995} (Act No. 147 of 1995), as amended or proposed to be altered
+#'   from time to time, and the Australian Harmonized Statistical Classification.
 #' 
+#'   The Australian Customs Tariff Classification working document is designed for day to day
+#'   use in determining tariff classifications and rates of Customs duty, etc., for the
+#'   purposes of entry of imported goods into Australia. 
+#'
+#'   The Australian Customs Tariff Classification is based on the International Convention
+#'   on the Harmonized Commodity Description and Coding System (HS) to which Australia is a
+#'   signatory.  The Convention provides the Interpretation Rules (set out in Schedule 2),
+#'   Sections, Chapters, headings, five and six digit subheadings and Notes to Sections and
+#'   Chapters are contained in Schedule 3 of the
+#'   \href{https://www.border.gov.au/Tariffclassificationofgoods/Documents/httitlgwv2.pdf}{Combined Australian Customs Tariff Nomenclature and Statistical Classification}.
+#'  
+#'   This dataset is based on the online version of Schedule 3 of the Department of Immigration
+#'   and Border Protection document titled \href{https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification/schedule-3}{Combined Australian Customs Tariff Nomenclature
+#'   and Statistical Classification}.
+#'
+#'   This version of the Working Tariff contains the tariff changes resulting from the
+#'   World Customs Organization fourth review of the International Convention on the
+#'   Harmonized Commodity Description and Coding System, commonly referred to as the
+#'   Harmonized System.  It also contains the consequential changes to the statistical
+#'   codes in Schedule 3 and the statistical code changes made by the Australian Bureau
+#'   of Statistics as a result of its review of the Statistical codes in Schedule 3 of
+#'   the Tariff. The changes contained in the new Working Tariff commenced on 1 January 2017.
+#'
 #'   For further details, see:
-#'   \href{http://www.abs.gov.au/ausstats/abs@.nsf/mf/1233.0}{Australian Harmonized Export Commodity Classification (ACTC)}.
-#' @source The ACTC is produced and maintained by the Australian Bureau of Statistics. 
+#'     \href{https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification}{Australian Government Department of Immigration and Border Protection, Current tariff classification}.
+#' @source The ACTC is published and maintained by the Australian Government Department of Immigration and Border Protection. 
 #' @references Department of Immigration and Border Protection 2017, \emph{Australian Harmonized Export Commodity Classification (ACTC), Schedule 3 - Classification of goods and general and special rates of duty}, DIBP, Canberra. URL: \url{https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification/schedule-3}.
 "actc_2017"

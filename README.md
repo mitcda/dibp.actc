@@ -1,38 +1,55 @@
-# Combined Australian Customs Tariff Nomenclature and Statistical Classification
+# Australian Customs Tariff Classification
 
 ## Introduction
 
 The Combined Australian Customs Tariff Nomenclature and Statistical
-Classification (referred to here as the Australian Customs Tariff Classification) is designed
-for use by exporters, customs brokers and freight forwarders in the
-classification of goods when providing export declarations to the Department of
-Immigration and Border Protection, and to assist users interpret export
-statistics published by the Australian Bureau of Statistics (ABS) (See: \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/1233.0Explanatory Notes}).
+Classification (commonly known as the Working Tariff) incorporates the *Customs
+Tariff Act 1995* (Act No. 147 of 1995), as amended or proposed to be altered
+from time to time, and the Australian Harmonized Statistical Classification.
+ 
+The Australian Customs Tariff Classification working document is designed for
+day to day use in determining tariff classifications and rates of Customs duty,
+etc., for the purposes of entry of imported goods into Australia.
 
-The classification is based on the six digit international Harmonized Commodity
-Description and Coding System (HS) developed by the World Customs Organization
-(WCO) for describing internationally traded goods. The ABS extends the six digit
-international HS by two digits to provide a finer level of detail to meet
-Australian statistical requirements (Statistical codes).
+The Australian Customs Tariff Classification is based on the International
+Convention on the Harmonized Commodity Description and Coding System (HS) to
+which Australia is a signatory.  The Convention provides the Interpretation
+Rules (set out in Schedule 2), Sections, Chapters, headings, five and six digit
+subheadings and Notes to Sections and Chapters are contained in Schedule 3 of
+the
+[Combined Australian Customs Tariff Nomenclature and Statistical Classification](https://www.border.gov.au/Tariffclassificationofgoods/Documents/httitlgwv2.pdf).
+  
+This dataset is based on the online version of Schedule 3 of the Department of
+Immigration and Border Protection document
+titled
+[Combined Australian Customs Tariff Nomenclature and Statistical Classification](https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification/schedule-3).
 
-The most significant changes to the AHECC occur when the WCO periodically
-updates the international HS. The international HS and the AHECC have been
-updated in 1992, 1996, 2002, 2007 and 2012. This update incorporates the 2017
-international HS changes and associated AHECC changes. The next international
-update is scheduled for 2022.
+This version of the Working Tariff contains the tariff changes resulting from
+the World Customs Organization fourth review of the International Convention on
+the Harmonized Commodity Description and Coding System, commonly referred to as
+the Harmonized System.  It also contains the consequential changes to the
+statistical codes in Schedule 3 and the statistical code changes made by the
+Australian Bureau of Statistics as a result of its review of the Statistical
+codes in Schedule 3 of the Tariff. The changes contained in the new Working
+Tariff commenced on 1 January 2017.
 
-Further details can be obtained from the ABS website: [Australian Harmonized Export Commodity Classification (AHECC)](http://www.abs.gov.au/ausstats/abs@.nsf/mf/1233.0).
+
+For further details,
+see:
+[Australian Government Department of Immigration and Border Protection, Current tariff classification](https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification).
 
 
 
-# abs.ahecc package
+# dibp.actc package
 
-This package provides electronic data for the 2007, 2012 and 2017 AHECCs,
-sourced from [ABS (2017)](http://www.abs.gov.au/ausstats/abs@.nsf/mf/1233.0).
+This package provides electronic data for the Australian Customs Tariff
+Classification as at 1 January 2017, sourced
+from
+[DIBP (2017)](https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification).
 
 
 ## Installation
 
 ```r
-devtools::install_github("mitcda/abs.ahecc")
+devtools::install_github("mitcda/dibp.actc")
 ```
