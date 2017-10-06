@@ -2,8 +2,7 @@ Package: dibp.actc
 Title: Australian Customs Tariff Classification (ACTC)
 Version: 0.1
 Authors@R: person("David", "Mitchell", email = "david.p.mitchell@homemail.com.au", role = c("aut", "cre"))
-Description: Provides data from the Combined Australian Customs Tariff Nomenclature and Statistical
-Classification 2017.
+Description: Provides data from the Combined Australian Customs Tariff Nomenclature and Statistical Classification 2017.
 URL: \url{https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification/schedule-3}
 Depends: R (>= 3.0)
 License: \href{https://cran.r-project.org/web/licencese/GPL-2}{GPL-2}|\href{https://cran.r-project.org/web/licencese/GPL-3}{GPL-3}
