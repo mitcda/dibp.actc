@@ -1,7 +1,7 @@
 #' ---
-#' filename:     build-actc.R
+#' filename:     build-actc-2017.R
 #' created:      2017-09-28
-#' updated:      <2019-07-17 16:55:42 david at grover>
+#' updated:      <2019-07-18 23:51:17 david at grover>
 #' author:       David Mitchell <david.p.mitchell@homemail.com.au>
 #' description:  Build Australian Customs Tariff Classification
 #'               Script automatically downloads the ACTC from the DIBP
@@ -9,13 +9,9 @@
 #' notes:        Check `base_url` is still current
 #' ---
 
-
 ### Set ACTC base URL
-base_url_2017 <- "https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification/schedule-3";
+base_url <- "https://www.border.gov.au/Busi/cargo-support-trade-and-goods/importing-goods/tariff-classification-of-goods/current-tariff-classification/schedule-3";
 
-base_url_2019 <- "https://www.abf.gov.au/importing-exporting-and-manufacturing/tariff-classification/current-tariff/schedule-3"
-
-base_url <- base_url_2019;
 
 ######  Section 0 - Libraries & settings
 library(magrittr);
@@ -204,10 +200,10 @@ if (DEBUG) {
     write.csv(file=file.path(tempdir(), "ACTC.csv"), row.names=FALSE)
 }
 
-### Write results to actc_2019 data frame
-actc_2019 <- actc;
+### Write results to actc_2017 data frame
+actc_2017 <- actc;
 
 ###### Section 4 - Write data sets files
-devtools::use_data(actc_2019, overwrite=TRUE);
+usethis::use_data(actc_2017, overwrite=TRUE);
 
 ## -------------------------------- EOF ---------------------------------------
