@@ -1,8 +1,8 @@
 Package: dibp.actc
 Title: Australian Customs Tariff Classification (ACTC)
-Version: 0.11.0
+Version: 0.11.1
 Date: 2019-07-19
-Authors@R: person("David", "Mitchell", email = "david.p.mitchell@homemail.com.au", role = c("aut", "cre"))
+Authors@R: person("David", "Mitchell", email = "david.pk.mitchell@gmail.com", role = c("aut", "cre"))
 Description: Provides multiple data sets from the Combined Australian Customs Tariff Nomenclature and Statistical Classification.
 URL: \url{https://www.abf.gov.au/importing-exporting-and-manufacturing/tariff-classification/current-tariff/schedule-3}
 Depends: R (>= 3.0)

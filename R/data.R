@@ -73,7 +73,7 @@
 #'   \item{unit}{unit of measure}
 #'   \item{commodity_name}{ACTC eight-digit commodity reference number}
 #'   \item{rate}{current customs tariff rate}
-#'   \item{notes}{notes to customs tariff}
+#'   \item{tariff_concession_orders}{tariff concession orders.}
 #' }
 #' @details The Combined Australian Customs Tariff Nomenclature and Statistical
 #'   Classification (commonly known as the Working Tariff) incorporates the
