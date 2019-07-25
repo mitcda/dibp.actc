@@ -1,7 +1,7 @@
 #' ---
 #' filename:     build-actc-2019.R
 #' created:      2017-09-28
-#' updated:      <2019-07-24 21:57:42 david at grover>
+#' updated:      <2019-07-25 22:24:23 david at grover>
 #' author:       David Mitchell <david.p.mitchell@homemail.com.au>
 #' description:  Build Australian Customs Tariff Classification
 #'               Script automatically downloads the ACTC from the DIBP
@@ -165,18 +165,18 @@ if (DEBUG)
   actc_table %>%
     write.csv(file=file.path(tempdir(), "actc_table.csv"), row.names=FALSE);
 
-
 ####  Create ACTC data frame
 actc <- actc_table %>%
   ## Join Section and Chapter numbers/names
   left_join(actc_chapters, by="chapter_href") %>%
   left_join(actc_sections, by="section_href") %>%
   ## Create 8-character reference_number:
-  ##   i) remove trailing asterisks (*) from reference_number
-  ##  ii) remove all periods (.) from reference_number
+  ##   i) remove all periods (.) from reference_number
+  ##  ii) remove trailing asterisks (*) from reference_number
   mutate(clean_reference_number = reference_number %>%
-           sub("\\*+$", "", .) %>%   
-           gsub("\\.", "", .),
+           gsub("\\.", "", .) %>%
+           gsub("\\W", "", .) %>%
+           trimws,
          tmp_reference_number = clean_reference_number %>%
            stringr::str_pad(width=8, side="right", pad="0")) %>%
   ## Clean up 'goods' text:
@@ -220,6 +220,7 @@ actc %<>%
 
 if (DEBUG)
   actc %>%
+    select(contains("number"), contains("name")) %>%
     write.csv(file=file.path(tempdir(), "actc.csv"), row.names=FALSE);
 
 ### Write results to actc_2019 data frame
