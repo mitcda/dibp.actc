@@ -1,7 +1,7 @@
 #' ---
 #' filename:     build-actc-2019.R
 #' created:      2017-09-28
-#' updated:      <2019-07-25 22:24:23 david at grover>
+#' updated:      <2019-07-26 11:32:16 david at grover>
 #' author:       David Mitchell <david.p.mitchell@homemail.com.au>
 #' description:  Build Australian Customs Tariff Classification
 #'               Script automatically downloads the ACTC from the DIBP
@@ -202,7 +202,9 @@ actc <- actc_table %>%
            zoo::na.locf(na.rm=FALSE),
          commodity_name = paste(heading_name, subheading_name_5digit, subheading_name_6digit,
                                 sep="; ") %>%
-           gsub("; NA", "", .));
+           gsub("; NA", "", .)) %>%
+  mutate_at(vars(contains("_number")), as.integer) %>%  ## Convert all *_number columns to integer ..
+  drop_na(contains("_number"));                         ## .. and remove any NA entries
 
 
 ## Clean and finalise ACTC data frame 
@@ -218,10 +220,25 @@ actc %<>%
          reference_number, statistical_code, unit,
          commodity_name, rate, tariff_concession_orders);
 
-if (DEBUG)
+
+
+## Append Schedule 4 codes
+### Load Schedule 4 codes (from separate file)
+actc_2019_schedule4 <- read.csv("ACTC-Schedule-IV-Jul2019.csv", colClasses="character",
+                                stringsAsFactors=FALSE) %>%
+  mutate_at(vars(contains("_number")), as.integer);
+### Bind Schedule 3 & Schedule 4
+actc <- actc_2019 %>%
+  mutate_at(vars(contains("number")), as.integer) %>%
+  drop_na(contains("number")) %>%     ## .. and remove any NA entries
+  bind_rows(actc_2019_schedule4);
+
+
+if (DEBUG) ## Check results
   actc %>%
     select(contains("number"), contains("name")) %>%
     write.csv(file=file.path(tempdir(), "actc.csv"), row.names=FALSE);
+
 
 ### Write results to actc_2019 data frame
 actc_2019 <- actc;
