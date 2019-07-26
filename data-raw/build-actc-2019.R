@@ -1,7 +1,7 @@
 #' ---
 #' filename:     build-actc-2019.R
 #' created:      2017-09-28
-#' updated:      <2019-07-26 11:32:16 david at grover>
+#' updated:      <2019-07-26 12:47:37 david at grover>
 #' author:       David Mitchell <david.p.mitchell@homemail.com.au>
 #' description:  Build Australian Customs Tariff Classification
 #'               Script automatically downloads the ACTC from the DIBP
@@ -166,7 +166,7 @@ if (DEBUG)
     write.csv(file=file.path(tempdir(), "actc_table.csv"), row.names=FALSE);
 
 ####  Create ACTC data frame
-actc <- actc_table %>%
+actc_schedule3 <- actc_table %>%
   ## Join Section and Chapter numbers/names
   left_join(actc_chapters, by="chapter_href") %>%
   left_join(actc_sections, by="section_href") %>%
@@ -202,14 +202,12 @@ actc <- actc_table %>%
            zoo::na.locf(na.rm=FALSE),
          commodity_name = paste(heading_name, subheading_name_5digit, subheading_name_6digit,
                                 sep="; ") %>%
-           gsub("; NA", "", .)) %>%
-  mutate_at(vars(contains("_number")), as.integer) %>%  ## Convert all *_number columns to integer ..
-  drop_na(contains("_number"));                         ## .. and remove any NA entries
+           gsub("; NA", "", .));
 
 
 ## Clean and finalise ACTC data frame 
-actc %<>%
-  filter(nchar(actc$clean_reference_number) == 8) %>%
+actc_schedule3 %<>%
+  filter(nchar(clean_reference_number) == 8) %>%   ## Select valid reference number rows only
   mutate(reference_number = tmp_reference_number %>% as.integer) %>%
   ## rename(notes = X_1) %>%
   select(section_number, section_name,
@@ -218,30 +216,30 @@ actc %<>%
          subheading_number_5digit, subheading_name_5digit,
          subheading_number_6digit, subheading_name_6digit,
          reference_number, statistical_code, unit,
-         commodity_name, rate, tariff_concession_orders);
-
-
-
-## Append Schedule 4 codes
-### Load Schedule 4 codes (from separate file)
-actc_2019_schedule4 <- read.csv("ACTC-Schedule-IV-Jul2019.csv", colClasses="character",
-                                stringsAsFactors=FALSE) %>%
-  mutate_at(vars(contains("_number")), as.integer);
-### Bind Schedule 3 & Schedule 4
-actc <- actc_2019 %>%
-  mutate_at(vars(contains("number")), as.integer) %>%
-  drop_na(contains("number")) %>%     ## .. and remove any NA entries
-  bind_rows(actc_2019_schedule4);
-
+         commodity_name, rate, tariff_concession_orders) %>%
+  mutate_at(vars(contains("_number")), as.integer);  ## Convert all *_number columns to integer ..
 
 if (DEBUG) ## Check results
-  actc %>%
+  actc_schedule3 %>%## dim
     select(contains("number"), contains("name")) %>%
     write.csv(file=file.path(tempdir(), "actc.csv"), row.names=FALSE);
 
+## Append Schedule 4 codes
+### Load Schedule 4 codes (from separate file)
+actc_schedule4 <- read.csv("ACTC-Schedule-IV-Jul2019.csv", colClasses="character",
+                           stringsAsFactors=FALSE) %>%
+  mutate_at(vars(contains("_number")), as.integer);
 
-### Write results to actc_2019 data frame
-actc_2019 <- actc;
+### Bind Schedule 3 & Schedule 4
+actc_2019 <- actc_schedule3 %>%
+  ## drop_na(contains("number")) %>%     ## .. and remove any NA entries
+  bind_rows(actc_schedule4);
+
+if (DEBUG) ## Check results
+  actc_2019 %>% ## dim
+    select(contains("number"), contains("name")) %>%
+    write.csv(file=file.path(tempdir(), "actc.csv"), row.names=FALSE);
+
 
 ###### Section 4 - Write data sets files
 usethis::use_data(actc_2019, overwrite=TRUE);
